@@ -106,7 +106,7 @@ controller_server:
       use_velocity_scaled_lookahead_dist: true
       min_approach_linear_velocity: 0.1
       approach_velocity_scaling_dist: 0.5
-      use_collision_detection: true
+      use_collision_detection: false
       max_allowed_time_to_collision_up_to_carrot: 1.0
 
       use_regulated_linear_velocity_scaling: true # Whether to use the regulated features for path curvature (e.g. slow on high curvature paths).
@@ -114,7 +114,7 @@ controller_server:
 
       regulated_linear_scaling_min_radius: 0.9
       regulated_linear_scaling_min_speed: 0.1
-      allow_reversing: false
+      allow_reversing: true
       use_rotate_to_heading: true
       rotate_to_heading_min_angle: 0.785
       # it is only used when rotating to heading (use_rotate_to_heading)
@@ -141,7 +141,7 @@ explore_node:
     orientation_scale: 0.5
     gain_scale: 1.0
     transform_tolerance: 0.1
-    min_frontier_size: 0.6
+    min_frontier_size: 0.3
 
 local_costmap:
   local_costmap:
@@ -167,14 +167,14 @@ local_costmap:
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         enabled: True
-        inflation_radius: 0.75
-        cost_scaling_factor: 3.0
+        inflation_radius: 0.1
+        cost_scaling_factor: 6.0
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: True
         observation_sources: scan
         scan:
-          topic: /scan_filtered
+          topic: /scan
           max_obstacle_height: 2.0
           clearing: True
           marking: True
@@ -217,14 +217,14 @@ global_costmap:
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         enabled: True
-        inflation_radius: 0.75
-        cost_scaling_factor: 3.0
+        inflation_radius: 0.2
+        cost_scaling_factor: 6.0
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: True
         observation_sources: scan
         scan:
-          topic: /scan_filtered
+          topic: /scan
           max_obstacle_height: 2.0
           clearing: True
           marking: True
@@ -288,7 +288,7 @@ velocity_smoother:
     max_accel: [1.5, 0.0, 3.0]
     max_decel: [-1.5, 0.0, -3.0]
     # used in the CLOSED_LOOP feedback mode
-    # odom_topic: "odom"
-    # odom_duration: 0.1
+    odom_topic: "/odometry/filtered"
+    odom_duration: 0.1
     deadband_velocity: [0.0, 0.0, 0.0]
     velocity_timeout: 1.0
