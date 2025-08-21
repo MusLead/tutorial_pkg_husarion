@@ -141,7 +141,7 @@ explore_node:
     orientation_scale: 0.5
     gain_scale: 1.0
     transform_tolerance: 0.1
-    min_frontier_size: 0.3
+    min_frontier_size: 0.05
 
 local_costmap:
   local_costmap:
@@ -161,14 +161,14 @@ local_costmap:
 
       # robot_radius: 0.23
       footprint: "[[0.17, 0.17], [0.17, -0.17], [-0.17, -0.17], [-0.17, 0.17]]"
-      footprint_padding: 0.03
+      footprint_padding: 0.015
 
       plugins: ["static_layer", "obstacle_layer", "inflation_layer"]
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         enabled: True
-        inflation_radius: 0.1
-        cost_scaling_factor: 6.0
+        inflation_radius: 0.175
+        cost_scaling_factor: 3.0
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: True
@@ -211,14 +211,14 @@ global_costmap:
 
       # robot_radius: 0.23
       footprint: "[[0.17, 0.17], [0.17, -0.17], [-0.17, -0.17], [-0.17, 0.17]]"
-      footprint_padding: 0.03
+      footprint_padding: 0.015
 
       plugins: ["static_layer", "obstacle_layer", "inflation_layer"]
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         enabled: True
-        inflation_radius: 0.2
-        cost_scaling_factor: 6.0
+        inflation_radius: 0.175
+        cost_scaling_factor: 3.0
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: True
@@ -253,8 +253,8 @@ planner_server:
     planner_plugins: ["GridBased"]
     GridBased:
       plugin: "nav2_navfn_planner/NavfnPlanner"
-      tolerance: 0.2
-      use_astar: false
+      tolerance: 0.3
+      use_astar: true
       allow_unknown: true
 
 planner_server_rclcpp_node:
