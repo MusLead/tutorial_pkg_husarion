@@ -49,6 +49,17 @@ def generate_launch_description():
         }.items(),
     )
 
+    # --- NEW: auto-start RViz with Nav2’s default RViz config ---
+    rviz_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            PathJoinSubstitution([nav2_bringup_dir, 'launch', 'rviz_launch.py'])
+        )
+        # Optionally pass a custom RViz config:
+        # , launch_arguments={'rviz_config': PathJoinSubstitution(
+        #     [tutorial_dir, 'rviz', 'my_nav2_view.rviz'])}.items()
+    )
+    # ------------------------------------------------------------
+
     return LaunchDescription(
         [
             declare_params_file_cmd,
@@ -56,5 +67,6 @@ def generate_launch_description():
             slam_launch,
             nav2_bringup_launch,
             explore_lite_launch,
+            rviz_launch,
         ]
     )
