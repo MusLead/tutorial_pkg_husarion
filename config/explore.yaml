@@ -209,7 +209,7 @@ global_costmap:
       always_send_full_costmap: True
       track_unknown_space: True
 
-      robot_radius: 0.3 //TODO: higher robot_radius?
+      robot_radius: 0.3 //TODO: higher robot_radius? what happen? 
       footprint: "[[0.17, 0.17], [0.17, -0.17], [-0.17, -0.17], [-0.17, 0.17]]"
       footprint_padding: 0.03
 
