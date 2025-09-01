@@ -61,6 +61,7 @@ private:
     const std_srvs::srv::Trigger::Request::SharedPtr req,
     const std_srvs::srv::Trigger::Response::SharedPtr res)
   {
+    (void)req;  // Avoid unused parameter warning
     res->success = 1;
     res->message = "Saved images: " + std::to_string(saved_imgs_);
   }
