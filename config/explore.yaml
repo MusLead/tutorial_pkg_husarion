@@ -97,7 +97,7 @@ controller_server:
       plugin: "nav2_regulated_pure_pursuit_controller::RegulatedPurePursuitController"
 
       # Velocity/accelaration limits also have to be adjusted in the velocity smoother
-      desired_linear_vel: 0.4
+      desired_linear_vel: 0.3
       lookahead_dist: 0.6
       min_lookahead_dist: 0.4
       max_lookahead_dist: 0.9
@@ -141,7 +141,7 @@ explore_node:
     orientation_scale: 0.5
     gain_scale: 1.0
     transform_tolerance: 0.1
-    min_frontier_size: 0.6
+    min_frontier_size: 0.05
 
 local_costmap:
   local_costmap:
@@ -160,15 +160,15 @@ local_costmap:
       always_send_full_costmap: True
 
       # robot_radius: 0.23
-      footprint: "[[0.17, 0.17], [0.17, -0.17], [-0.17, -0.17], [-0.17, 0.17]]"
-      footprint_padding: 0.03
+      footprint: "[[0.1, 0.1], [0.1, -0.1], [-0.1, -0.1], [-0.1, 0.1]]"
+      footprint_padding: 0.0
 
       plugins: ["static_layer", "obstacle_layer", "inflation_layer"]
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         enabled: True
-        inflation_radius: 0.75
-        cost_scaling_factor: 3.0
+        inflation_radius: 0.9
+        cost_scaling_factor: 2.5
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: True
@@ -210,15 +210,15 @@ global_costmap:
       track_unknown_space: True
 
       # robot_radius: 0.23
-      footprint: "[[0.17, 0.17], [0.17, -0.17], [-0.17, -0.17], [-0.17, 0.17]]"
-      footprint_padding: 0.03
+      footprint: "[[0.1, 0.1], [0.1, -0.1], [-0.1, -0.1], [-0.1, 0.1]]"
+      footprint_padding: 0.0
 
       plugins: ["static_layer", "obstacle_layer", "inflation_layer"]
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         enabled: True
-        inflation_radius: 0.75
-        cost_scaling_factor: 3.0
+        inflation_radius: 0.9
+        cost_scaling_factor: 2.5
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: True
